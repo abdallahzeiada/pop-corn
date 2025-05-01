@@ -63,15 +63,13 @@ import { useLocalStorageState } from "./hooks/useLocalStorageState";
 export const average = (arr) =>
   arr.reduce((acc, cur, i, arr) => acc + cur / arr.length, 0);
 
-
 export default function App() {
-  
   const [query, setQuery] = useState("");
   const [selectedId, setSelectedId] = useState(null);
 
   const { movies, isLoading, error } = useMovies(query);
 
-    const [watched, setWatched] = useLocalStorageState([], "watched");
+  const [watched, setWatched] = useLocalStorageState([], "watched");
   function handleSelectMovie(id) {
     setSelectedId((selectedId) => (selectedId === id ? null : id));
   }
@@ -88,13 +86,13 @@ export default function App() {
     setWatched((watched) => watched.filter((movie) => movie.imdbID !== id));
   }
 
-
-
   return (
     <>
       <NavBar>
-        <Search query={query} setQuery={setQuery} />
-        <Result movies={movies} />
+        <div className="search-result">
+          <Search query={query} setQuery={setQuery} />
+          <Result movies={movies} />
+        </div>
       </NavBar>
       <Main>
         <Box>

@@ -31,8 +31,8 @@ html {
 }
 
 body {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
-    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   color: var(--color-text);
   background-color: var(--color-background-900);
   padding: var(--spacing-md);
@@ -44,16 +44,21 @@ body {
 /* ******* */
 
 .nav-bar {
-  display: grid;
-  grid-template-columns: auto 1fr auto;
+  display: flex;
   align-items: center;
+  justify-content: space-between;
   padding: var(--spacing-md);
   background-color: var(--color-primary);
   border-radius: var(--border-radius);
   gap: var(--spacing-md);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
 }
-
+.nav-bar .search-result{
+  width: 70%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
 .main {
   margin-top: var(--spacing-lg);
   min-height: calc(100vh - 7.2rem - 3 * var(--spacing-lg));
@@ -116,12 +121,12 @@ body {
 }
 
 .search {
-  justify-self: center;
+  /* justify-self: center; */
   border: 1px solid rgba(255, 255, 255, 0.1);
   padding: 1.1rem var(--spacing-md);
   font-size: 1.8rem;
   border-radius: 0.7rem;
-  width: 100%;
+  width: 60%;
   max-width: 40rem;
   transition: var(--transition-default);
   color: var(--color-text);
@@ -191,7 +196,11 @@ body {
 .list.list-movies li {
   cursor: pointer;
 }
-
+.list.list-movies li div{
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+}
 .list.list-movies li:hover {
   background-color: rgba(255, 255, 255, 0.05);
   transform: translateX(4px);
@@ -387,12 +396,12 @@ section .starring {
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.8);
   font-family: sans-serif;
   font-size: 2.4rem;
-  font-weight: 500;
+  font-weight: bold;
   letter-spacing: 0.5px;
   cursor: pointer;
   z-index: 999;
   display: flex;
-  align-items: center;
+  align-items: start;
   justify-content: center;
   transition: var(--transition-default);
 }
@@ -414,23 +423,26 @@ section .starring {
     --spacing-md: 1.2rem;
     --spacing-lg: 2rem;
   }
-
   html {
     font-size: 50%;
   }
 
   .nav-bar {
-    grid-template-columns: 1fr 2fr 1fr;
-    gap: 1.2rem;
-    padding: var(--spacing-sm);
-  }
-
-  .details header {
+    display: flex;
     flex-direction: column;
+    align-items: start;
   }
-
-  .details img {
+  .nav-bar .search-result{
     width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .nav-bar .search-result .search{
+    width: 60%;
+  }
+  .details img {
+    width: 40%;
   }
 }
 
@@ -446,12 +458,18 @@ section .starring {
   .list li {
     grid-template-columns: 3rem 1fr;
     padding: 1.2rem;
+    display: flex;
   }
-
-  .list div {
-    gap: var(--spacing-xs);
+  .list li img {
+    width: 10%;
+    grid-row: 1 / -1;
+    border-radius: 0.4rem;
   }
-
+  .list .btn-delete {
+    font-size: 16px;
+    background-color: var(--color-red-dark);
+    color: var(--color-text-dark);
+  }
   .details section {
     padding: 2rem 1.6rem;
   }
@@ -466,22 +484,12 @@ section .starring {
   }
 }
 
-/* CSS for accessibility improvements */
-/* .search:focus-visible,
-.btn-add:focus-visible,
-.btn-delete:focus-visible,
-.btn-back:focus-visible,
-.btn-toggle:focus-visible {
-  outline: 2px solid white;
-  outline-offset: 2px;
-} */
-
 /* Enhance tap targets for mobile */
 @media (hover: none) and (pointer: coarse) {
   .btn-delete,
   .btn-toggle,
   .btn-back {
-    min-height: 4.4rem;
-    min-width: 4.4rem;
+    min-height: 4rem;
+    min-width: 4rem;
   }
 }
