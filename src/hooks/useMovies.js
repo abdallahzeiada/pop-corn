@@ -2,14 +2,13 @@ import { useEffect, useState } from "react";
 
 const KEY = process.env.REACT_APP_OMDB_API_KEY;
 
-export function useMovies(query, callback) {
+export function useMovies(query) {
   const [movies, setMovies] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
 
   useEffect(
     function () {
-      callback?.();
       const controller = new AbortController();
       async function fetchData() {
         try {

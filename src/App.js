@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Loader } from "./components/Loader";
 import { ErrorMessage } from "./components/ErrorMessage";
 import { NavBar } from "./components/NavBar";
@@ -69,7 +69,7 @@ export default function App() {
   const [query, setQuery] = useState("");
   const [selectedId, setSelectedId] = useState(null);
 
-  const { movies, isLoading, error } = useMovies(query, handleCloseMovieDetails);
+  const { movies, isLoading, error } = useMovies(query);
 
     const [watched, setWatched] = useLocalStorageState([], "watched");
   function handleSelectMovie(id) {
